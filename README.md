@@ -52,7 +52,7 @@ Ensure you have the datasets downloaded and organized as described in the docume
 The CRD-Net model achieves state-of-the-art performance on the MMC-AMD, APTOS-2021, and GAMMA datasets. Detailed performance metrics and comparison with other methods are provided in the paper.
 
 ### Class Activation Map Visualization
-<img src="image/second_image.png" width="80%">
+<img src="image/second_image.png" width="50%">
 
 ## Citation
 If you find this repository useful in your research, please cite the following paper:
