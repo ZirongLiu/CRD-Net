@@ -2,8 +2,7 @@
 # Cross-modal Attention Network for Retinal Disease Classification (CRD-Net)
 
 ### Example Images from the Dataset
-![Image 1](image/first_image.png)
-<img src="image/first_image.png" width="30%">
+<img src="image/first_image.png" width="50%">
 
 ## Introduction
 This repository contains the implementation of the paper **"Cross-modal attention network for retinal disease classification based on multi-modal images"** by Zirong Liu, Yan Hu, Zhongxi Qiu, Yanyan Niu, et al.
@@ -15,7 +14,8 @@ Multi-modal eye disease screening improves diagnostic accuracy by providing lesi
 - Cross-Modal Attention (CMA) Module
 - Multiple Loss Functions
 - Evaluation on three publicly available datasets: MMC-AMD, APTOS-2021, and GAMMA
-![Image model](image/model.png)
+<img src="image/model.png" width="50%">
+
 ## Installation
 Clone this repository:
 \`\`\`bash
