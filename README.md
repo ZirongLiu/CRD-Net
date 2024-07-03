@@ -14,7 +14,7 @@ Multi-modal eye disease screening improves diagnostic accuracy by providing lesi
 - Cross-Modal Attention (CMA) Module
 - Multiple Loss Functions
 - Evaluation on three publicly available datasets: MMC-AMD, APTOS-2021, and GAMMA
-<img src="image/model.png" width="50%">
+<img src="image/model.png" width="100%">
 
 ## Installation
 Clone this repository:
@@ -53,7 +53,7 @@ Ensure you have the datasets downloaded and organized as described in the docume
 The CRD-Net model achieves state-of-the-art performance on the MMC-AMD, APTOS-2021, and GAMMA datasets. Detailed performance metrics and comparison with other methods are provided in the paper.
 
 ### Class Activation Map Visualization
-![Image 2](image/second_image.png)
+<img src="image/second_image.png" width="80%">
 
 ## Citation
 If you find this repository useful in your research, please cite the following paper:
