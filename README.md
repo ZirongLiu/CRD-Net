@@ -1,13 +1,15 @@
 # Cross-modal attention network for retinal disease classification based on multi-modal images (CRD-Net)
 
 ### Example Images from the Dataset
+
 <div align="center">
   <img src="image/first_image.png" width="50%">
 </div>
+
 ## Introduction
 This repository contains the implementation of the paper **"Cross-modal attention network for retinal disease classification based on multi-modal images"** by Zirong Liu, Yan Hu, Zhongxi Qiu, Yanyan Niu, et al.
 
-**Abstract:**
+### Abstract:
 Multi-modal eye disease screening improves diagnostic accuracy by providing lesion information from different sources. However, existing multi-modal automatic diagnosis methods tend to focus on the specificity of modalities and ignore the spatial correlation of images. This paper proposes a novel cross-modal retinal disease diagnosis network (CRD-Net) that digs out the relevant features from modal images aided for multiple retinal disease diagnosis. Specifically, our model introduces a cross-modal attention (CMA) module to query and adaptively pay attention to the relevant features of the lesion in the different modal images. In addition, we also propose multiple loss functions to fuse features with modality correlation and train a multi-modal retinal image classification network to achieve a more accurate diagnosis. Experimental evaluation on three publicly available datasets shows that our CRD-Net outperforms existing single-modal and multi-modal methods, demonstrating its superior performance.
 
 ## Features
