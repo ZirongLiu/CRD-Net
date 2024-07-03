@@ -17,28 +17,28 @@ Multi-modal eye disease screening improves diagnostic accuracy by providing lesi
 
 ## Installation
 Clone this repository:
-\`\`\`bash
+```bash
 git clone https://github.com/ZirongLiu/CRD-Net.git
 cd CRD-Net
-\`\`\`
+```
 
 Install the required dependencies:
-\`\`\`bash
+```bash
 pip install -r xxx.txt
-\`\`\`
+```
 
 ## Usage
 ### Training
 To train the CRD-Net model, use the following command:
-\`\`\`bash
+```bash
 python xxx.py --dataset [MMC-AMD/APTOS-2021/GAMMA] --epochs 150 --batch_size 8
-\`\`\`
+```
 
 ### Evaluation
 To evaluate the model on the test set, use the following command:
-\`\`\`bash
+```bash
 python xxx.py --dataset [MMC-AMD/APTOS-2021/GAMMA] --checkpoint_path path/to/checkpoint
-\`\`\`
+```
 
 ## Datasets
 The datasets used in this study are publicly available:
@@ -56,7 +56,7 @@ The CRD-Net model achieves state-of-the-art performance on the MMC-AMD, APTOS-20
 
 ## Citation
 If you find this repository useful in your research, please cite the following paper:
-\`\`\`bibtex
+```bibtex
 @article{liu2024crossmodal,
   title={Cross-modal attention network for retinal disease classification based on multi-modal images},
   author={Liu, Zirong and Hu, Yan and Qiu, Zhongxi and Niu, Yanyan and Zhou, Dan and Li, Xiaoling and Shen, Junyong and Jiang, Hongyang and Li, Heng and Liu, Jiang},
@@ -67,7 +67,7 @@ If you find this repository useful in your research, please cite the following p
   year={2024},
   publisher={Optica Publishing Group}
 }
-\`\`\`
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
