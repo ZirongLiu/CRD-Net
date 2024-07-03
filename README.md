@@ -1,5 +1,4 @@
-
-# Cross-modal Attention Network for Retinal Disease Classification (CRD-Net)
+# Cross-modal attention network for retinal disease classification based on multi-modal images (CRD-Net)
 
 ### Example Images from the Dataset
 <img src="image/first_image.png" width="50%">
