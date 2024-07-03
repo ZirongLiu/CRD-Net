@@ -2,7 +2,7 @@
 # Cross-modal Attention Network for Retinal Disease Classification (CRD-Net)
 
 ### Example Images from the Dataset
-![Image 1](image/first_image.png)
+![Image 1](image/first_image.png)![Image model](image/model.png)
 
 ## Introduction
 This repository contains the implementation of the paper **"Cross-modal attention network for retinal disease classification based on multi-modal images"** by Zirong Liu, Yan Hu, Zhongxi Qiu, Yanyan Niu, et al.
