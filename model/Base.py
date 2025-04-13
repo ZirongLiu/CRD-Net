@@ -11,16 +11,10 @@ class Base_Model(nn.Module):
         super(Base_Model, self).__init__()
         self.fundus_branch = torchvision.models.resnet18(pretrained=True)  
         self.oct_branch = torchvision.models.resnet18(pretrained=True)
-        self.fundus_branch.fc = nn.Sequential()     # 移除最后一层全连接层
-        self.oct_branch.fc = nn.Sequential()        # 移除最后一层全连接层
+        self.fundus_branch.fc = nn.Sequential()     
+        self.oct_branch.fc = nn.Sequential()        
         self.decision_branch = nn.Linear(512 * 1 * 2, num_classes)
 
-        #vgg16
-        # self.fundus_branch = torchvision.models.vgg16_bn(pretrained=True)  # 移除最后一层全连接层
-        # self.oct_branch = torchvision.models.vgg16_bn(pretrained=True)  # 移除最后一层全连接层
-        # self.fundus_branch.classifier._modules['6'] = nn.Sequential()
-        # self.oct_branch.classifier._modules['6'] = nn.Sequential()
-        # self.decision_branch = nn.Linear(4096 * 1 * 2, num_classes)
 
 
     def forward(self, fundus_img, oct_img):
