@@ -1,7 +1,6 @@
 import argparse
 import csv
 import os
-# 设置 Hugging Face 镜像源
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 from tqdm import tqdm
 import torch
@@ -60,12 +59,12 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, de
                 outputs = model(inputs_CF, inputs_FFA)
                 if model_name == 'CRD-Net':
                     output_both, output_fundus, output_OCT = outputs
-                    # 双模态loss
+           
                     loss_both = criterion(output_both, labels)
-                    # 单模态loss
+         
                     loss_OCT = criterion(output_OCT, labels)
                     loss_fundus = criterion(output_fundus, labels)
-                    # 3个loss
+   
                     loss = loss_both + loss_OCT + loss_fundus
                     pass
                 else:
@@ -74,7 +73,7 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, de
                 optimizer.step()
                 running_loss += loss.item() * inputs_CF.size(0)
 
-                # 更新进度条描述（例如显示当前loss）
+
                 train_progress.set_postfix(loss=loss.item())
 
             train_loss = running_loss / len(train_loader.dataset)
@@ -95,12 +94,12 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, de
 
                     if model_name == 'CRD-Net':
                         output_both, output_fundus, output_OCT = outputs
-                        # 双模态loss
+         
                         loss_both = criterion(output_both, labels)
-                        # 单模态loss
+
                         loss_OCT = criterion(output_OCT, labels)
                         loss_fundus = criterion(output_fundus, labels)
-                        # 3个loss
+
                         loss = loss_both + loss_OCT + loss_fundus
                         outputs = output_both
                     else:
@@ -111,10 +110,9 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, de
                     sample_names.extend(paths)
                     all_labels.extend(labels.cpu().numpy())
                     all_preds.extend(preds.cpu().numpy())
-                    all_probs.extend(outputs.softmax(dim=1).cpu().numpy())  # 获取正类概率
+                    all_probs.extend(outputs.softmax(dim=1).cpu().numpy())  
                     all_logits.extend(outputs.cpu().numpy())
-        
-                    # 更新进度条描述
+
                     val_progress.set_postfix(loss=loss.item())
 
             val_loss /= len(val_loader.dataset)
@@ -167,9 +165,8 @@ def train_and_evaluate(model, train_loader, val_loader, criterion, optimizer, de
 def main():
     args = parse_args()
     os.makedirs(os.path.join(args.output_dir, args.modality), exist_ok=True)
-    device = set_device(args)  # 根据 gpus 参数设置设备
+    device = set_device(args)  
 
-    # 获取对应的 train_loader 和 val_loader
     train_loader, val_loader = get_multimodel_dataloaders(args.data_root, args.csv_file, args.batch_size, test_type="all")
 
     models_to_train = {
@@ -181,7 +178,6 @@ def main():
     for model_name, model in models_to_train.items():
         print(f"Training {model_name}...")
 
-        # 使用 DataParallel 进行单机多卡训练
         model = nn.DataParallel(model).to(device)
 
         criterion = nn.CrossEntropyLoss()
