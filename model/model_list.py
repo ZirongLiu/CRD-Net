@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time : 2022/5/11 10:25
-# @Author : Shen Junyong
-# @File : model_list
-# @Project : MSAN_Retina
 from model.MMCNN import *
 from model.Base import Base_Model
 from model.CRDNet import CrossMaResNet
