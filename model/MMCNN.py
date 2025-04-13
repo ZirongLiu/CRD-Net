@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time : 2022/5/12 16:55
-# @Author : Shen Junyong
-# @File : Two_stream_model
-# @Project : MSAN_Retina
 import torch.nn as nn
 import torch
 from typing import Type, Any, Callable, Union, List, Optional
