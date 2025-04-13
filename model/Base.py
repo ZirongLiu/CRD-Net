@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time : 2022/5/16 17:17
-# @Author : Shen Junyong
-# @File : Base
-# @Project : MSAN_Retina
 import torch
 import torch.nn as nn
 import torchvision
