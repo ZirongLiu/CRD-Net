@@ -164,36 +164,12 @@ class CrossGate(nn.Module):
         self.mlp_x = UFFN(x_ch, x_ch, use_mid_conv=False)
         self.mlp_y = UFFN(y_ch, y_ch, use_mid_conv=False)
 
-        # Transformer Block 2
-        # self.pre_att_x_1 = Attention4D(num_head, x_ch, dim_k=dim)
-        # self.pre_att_y_1 = Attention4D(num_head, y_ch, dim_k=dim)
-        # self.mlp_x_1 = UFFN(x_ch, x_ch, use_mid_conv=False)
-        # self.mlp_y_1 = UFFN(y_ch, y_ch, use_mid_conv=False)
-
-        # Transformer Block 3
-        # self.pre_att_x_2 = Attention4D(num_head, x_ch, dim_k=dim)
-        # self.pre_att_y_2 = Attention4D(num_head, y_ch, dim_k=dim)
-        # self.mlp_x_2 = UFFN(x_ch, x_ch, use_mid_conv=False)
-        # self.mlp_y_2 = UFFN(y_ch, y_ch, use_mid_conv=False)
-
         # CMA block
         self.cross_att = CrossAtt(x_ch, y_ch, dim, num_head)
         self.mlp_x_after = UFFN(x_ch, x_ch, use_mid_conv=False)
         self.mlp_y_after = UFFN(y_ch, y_ch, use_mid_conv=False)
 
     def forward(self, x, y):
-        #Transformer Block 3
-        # x = self.pre_att_x_2(x) + x
-        # y = self.pre_att_y_2(y) + y
-        # x = self.mlp_x_2(x) + x
-        # y = self.mlp_y_2(y) + y
-
-        #Transformer Block 2
-        # x = self.pre_att_x_1(x) + x
-        # y = self.pre_att_y_1(y) + y
-        # x = self.mlp_x_1(x) + x
-        # y = self.mlp_y_1(y) + y
-
         #Transformer Block 1
         x = self.pre_att_x(x) + x
         y = self.pre_att_y(y) + y
@@ -221,19 +197,6 @@ class CrossMaResNet(nn.Module):
         del self.backbone_y.fc
         if in_ch_y != 3:
             self.backbone_y.conv1 = nn.Conv2d(in_ch_y, 64, 7, 2, 3)
-
-        #Transformer Block and CMA block 3
-        # self.cross_att_stage3 = CrossGate(256, 256, 256*1*2, num_head=4)
-        # self.cross_fusion_x_3 = nn.Sequential(
-        #     nn.Conv2d(256, 256, 1, 1, 0),
-        #     nn.ReLU(),
-        #     nn.Conv2d(256, 256, 3, 1, 1)
-        # )
-        # self.cross_fusion_y_3 = nn.Sequential(
-        #     nn.Conv2d(256, 256, 1, 1, 0),
-        #     nn.ReLU(),
-        #     nn.Conv2d(256, 256, 3, 1, 1)
-        # )
 
         # Transformer Block and CMA block 4
         self.cross_att_stage4 = CrossGate(512, 512, 512*1*2, num_head=4)
@@ -264,16 +227,8 @@ class CrossMaResNet(nn.Module):
         return s3
 
     def forward(self, x, y):
-    # def forward(self, inputs):
-    #     x, y = inputs
         x_s3 = self.backbone_forward(self.backbone_x, x)
         y_s3 = self.backbone_forward(self.backbone_y, y)
-
-        # Transformer Block and CMA3 block
-        # x_s3, y_s3 = self.cross_att_stage3(x_s3, y_s3)
-        # x_s3 = self.cross_fusion_x_3(x_s3)
-        # y_s3 = self.cross_fusion_y_3(y_s3)
-
         x_s4 = self.backbone_x.layer4(x_s3) #B*512*28*28
         y_s4 = self.backbone_y.layer4(y_s3) #B*512*28*28
 
@@ -297,13 +252,5 @@ if __name__ == "__main__":
     y = torch.randn(1, 3, 448, 448).cuda()
     model = CrossMaResNet().cuda()
     flops, params = profile(model, inputs=(x,))
-    print(flops / 1e9, params / 1e6)  # flops单位G，para单位M
-    # 开始计时
-    # start_time = time.time()
-    # out, out_x, out_y = model(x, y)
-    # # 结束计时
-    # end_time = time.time()
-    # 计算推理时间
-    # inference_time = end_time - start_time
-    # print("Inference time:", inference_time, "seconds")
-    # print(out.shape)
+    print(flops / 1e9, params / 1e6)
+
