@@ -1,11 +1,3 @@
-# -*- coding:utf-8 -*-
-# !/usr/bin/env python
-"""
-    filename:cross_ma_resnet
-    author: 12718
-    time: 2022/9/14 15:27
-    tool: PyCharm
-"""
 import torch
 import torch.nn as nn
 from thop import profile
